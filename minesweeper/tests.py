@@ -21,21 +21,21 @@ class ViewTests(unittest.TestCase):
         Test cell model works
         """
         cell = Cell()
-        self.assertEqual(cell.is_mine(), False)
-        self.assertEqual(cell.is_revealed(), False)
-        self.assertEqual(cell.is_flagged(), False)
-        self.assertEqual(cell.get_mines_around(), 0)
+        self.assertEqual(cell._isMine, False)
+        self.assertEqual(cell._isRevealed, False)
+        self.assertEqual(cell._isRevealed, False)
+        self.assertEqual(cell._minesAround, 0)
 
-        cell.set_flagged()
-        cell.set_revealed()
-        cell.set_mine()
-        cell.set_mines_around(8)
-        self.assertEqual(cell.is_mine(), True)
-        self.assertEqual(cell.is_revealed(), True)
-        self.assertEqual(cell.is_flagged(), True)
-        self.assertEqual(cell.get_mines_around(), 8)
+        cell._isMine = True
+        cell._isRevealed = True
+        cell._isFlagged = True
+        cell._minesAround = 8
+        self.assertEqual(cell._isMine, True)
+        self.assertEqual(cell._isRevealed, True)
+        self.assertEqual(cell._isFlagged, True)
+        self.assertEqual(cell._minesAround, 8)
 
     def test_model_board(self):
         game = Game(10, 10, 5)
-        self.assertEqual(game.get_mines(), [])
-        self.assertEqual(game.get_result(), 0)
+        self.assertEqual(game._mines, [])
+        self.assertEqual(game._result, 0)
