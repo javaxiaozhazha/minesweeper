@@ -43,3 +43,25 @@ class Cell:
 
     def set_mines_around(self, mines_around):
         self.__minesAround = mines_around
+
+class Board:
+    """
+    Board class represent a game board
+    Board holds a board of 2D cells, and all states (game done or game ongoing...)
+    """
+    def __init__(self, rows, cols, minesNumber):
+        self.__rows = rows
+        self.__cols =cols
+        self.__minesNumber = minesNumber #The number of mines the board holds
+        self.__board = [] #The size of this board should be rows*cols
+        self.__mines = [] #A list of cells which are mines
+        self.__result = 0 #Game result [0:game ongoing, 1:player win, -1: player lose]
+
+    def get_board(self):
+        return self.__board
+
+    def get_result(self):
+        return self.__result
+
+    def get_mines(self):
+        return self.__mines
