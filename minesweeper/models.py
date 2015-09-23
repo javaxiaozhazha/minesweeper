@@ -44,10 +44,10 @@ class Cell:
     def set_mines_around(self, mines_around):
         self.__minesAround = mines_around
 
-class Board:
+class Game:
     """
-    Board class represent a game board
-    Board holds a board of 2D cells, and all states (game done or game ongoing...)
+    Game class represent a game board
+    Game holds a board of 2D cells, and all states (game done or game ongoing...)
     """
     def __init__(self, rows, cols, minesNumber):
         self.__rows = rows
@@ -60,8 +60,18 @@ class Board:
     def get_board(self):
         return self.__board
 
+    def set_board(self, board):
+        self.__board = board
+
     def get_result(self):
         return self.__result
 
     def get_mines(self):
         return self.__mines
+
+class Player:
+    """
+    Player: every player has their game history, current game status
+    """
+    def __init__(self):
+        self.__history = []
