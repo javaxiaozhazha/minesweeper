@@ -30,21 +30,23 @@
         <div class="col-md-12">
           <h2>
             <p>
+              <span ng-show="current_player==0">Current Player: 1</span>
+              <span ng-show="current_player==1">Current Player: 2</span> |
               <span ng-show="level==0">Level: Easy</span>
               <span ng-show="level==1">Level: Intermediate</span>
               <span ng-show="level==2">Level: Hard</span>
             </p>
           </h2>
            <div class="shadow" ng-show="finish!=0" ng-click="init()"> </div>　　
-           <div class="result" ng-show="finish==-1" ng-click="init()"><img src="${request.static_url('minesweeper:static/img/sorry.gif')}"/> YOU Lose!</div>　　
-           <div class="result" ng-show="finish==1" ng-click="init()"> <img src="${request.static_url('minesweeper:static/img/happy.gif')}"/>YOU Won! </div>　
+           <div class="result" ng-show="finish==-1" ng-click="init()"><img src="${request.static_url('minesweeper:static/img/sorry.gif')}"/> Player {{current_player+1}} Won!</div>　　
+           <div class="result" ng-show="finish==1" ng-click="init()"> <img src="${request.static_url('minesweeper:static/img/happy.gif')}"/> Player {{current_player+1}} Lose! </div>　
            <div ng-init="init()" id="board">
             <table>
             <tr ng-repeat="rows in board" ng-init="rindex=$index">
               <td ng-disabled="cell[1]"
                   ng-click="update(rindex, $index);" ng-right-click="flag(rindex, $index);"
                   ng-repeat="cell in rows"
-                  ng-class="{red:cell[0]=='X', green:!cell[1], grey:cell[1], orange:cell[2]}">{{cell[0]}}
+                  ng-class="{red:cell[0]=='X', green:!cell[1], grey:cell[1] && current_player==1, blue:cell[1] && current_player==0, orange:cell[2]}">{{cell[0]}}
               </td>
             </tr>
             </table>

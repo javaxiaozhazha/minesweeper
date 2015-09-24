@@ -29,6 +29,7 @@ gameControllers.controller('minesweep', ['$scope', '$http', 'gameApiService',
         $scope.board = data[0];
         $scope.finish = 0;
         $scope.level = data[1]
+        $scope.current_player = data[2]
       });
     };
 
@@ -37,6 +38,7 @@ gameControllers.controller('minesweep', ['$scope', '$http', 'gameApiService',
         $scope.board = data[0];
         $scope.finish = 0;
         $scope.level = data[1]
+        $scope.current_player = data[2]
       });
     };
 
@@ -45,6 +47,7 @@ gameControllers.controller('minesweep', ['$scope', '$http', 'gameApiService',
         $scope.board = data[0];
         $scope.finish = data[1];
         $scope.level = data[2]
+        $scope.current_player = data[3]
       });
     };
 
