@@ -29,7 +29,8 @@ def load_game_view(request):
         print "load existing game..."
         service = request.session["service"]
     print "mines:", service._game._mines
-    return [Jsonify.to_board_view(service._game._board, service._game._result), request.session['level']];
+    return [Jsonify.to_board_view(service._game._board, service._game._result),
+            request.session['level']];
 
 @view_config(route_name='api.new', renderer='json')
 def new_game_view(request):
@@ -42,7 +43,8 @@ def new_game_view(request):
     request.session['service'] = service
     request.session['level'] = level
     print "mines:", service._game._mines
-    return [Jsonify.to_board_view(service._game._board, service._game._result), request.session['level']];
+    return [Jsonify.to_board_view(service._game._board, service._game._result),
+            request.session['level']];
 
 @view_config(route_name='api.update', renderer='json')
 def update_view(request):
@@ -55,7 +57,8 @@ def update_view(request):
     service.update_board_with_reveal(row, col)
     if service._game._result==1:
         request.session['level'] += 1
-    return [Jsonify.to_board_view(service._game._board, service._game._result), service._game._result, request.session['level']];
+    return [Jsonify.to_board_view(service._game._board, service._game._result),
+            service._game._result, request.session['level']];
 
 @view_config(route_name='api.flag', renderer='json')
 def flag_view(request):
@@ -65,7 +68,8 @@ def flag_view(request):
     row = int(request.json_body['row'])
     col = int(request.json_body['col'])
     service.update_board_with_flag(row, col)
-    return [Jsonify.to_board_view(service._game._board, service._game._result), service._game._result, request.session['level']];
+    return [Jsonify.to_board_view(service._game._board, service._game._result),
+            service._game._result, request.session['level']];
 
 def create_game(level, players):
     """Create game according to game level and players
