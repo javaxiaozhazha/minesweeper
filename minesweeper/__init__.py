@@ -10,5 +10,6 @@ def main(global_config, **settings):
     config.add_route('home', '/')
     #Add my RESTful API route config here
     config.add_route('api.init', '/api/init')
+    config.add_route('api.update', '/api/update')
     config.scan()
     return config.make_wsgi_app()
