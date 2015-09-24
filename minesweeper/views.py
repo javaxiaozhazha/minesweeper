@@ -65,7 +65,7 @@ def flag_view(request):
     row = int(request.json_body['row'])
     col = int(request.json_body['col'])
     service.update_board_with_flag(row, col)
-    return [Jsonify.toJson(service._game._board, service._game._result), service._game._result, request.session['level']];
+    return [Jsonify.to_board_view(service._game._board, service._game._result), service._game._result, request.session['level']];
 
 def create_game(level, players):
     """Create game according to game level and players
