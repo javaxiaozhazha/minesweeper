@@ -11,9 +11,8 @@ def my_view(request):
 @view_config(route_name='api.init', renderer='json')
 def load_game_view(request):
     """If unfinished game was found in memory, then load it
-     OR create a new game
+     Otherwise create a new game
     """
-    service = None
     level = 0
     if 'level' not in request.session:
         request.session['level'] = level
@@ -22,8 +21,7 @@ def load_game_view(request):
 
     if 'service' not in request.session or request.session['service']._game._result is not 0:
         print 'Init game...'
-        player = Player("player1")
-        service = create_game(level, [player])
+        service = create_game(level, [Player("player1")])
         request.session['service'] = service
     else:
         print "load existing game..."
@@ -38,8 +36,7 @@ def new_game_view(request):
     """
     print 'Start a new game from level 0...'
     level = 0
-    player = Player("player1")
-    service = create_game(level, [player])
+    service = create_game(level, [Player("player1")])
     request.session['service'] = service
     request.session['level'] = level
     print "mines:", service._game._mines
@@ -48,6 +45,8 @@ def new_game_view(request):
 
 @view_config(route_name='api.update', renderer='json')
 def update_view(request):
+    """Call this view when left click to reveal a cell
+    """
     if 'service' not in request.session:
         return ERROR
     service = request.session["service"]
@@ -62,6 +61,8 @@ def update_view(request):
 
 @view_config(route_name='api.flag', renderer='json')
 def flag_view(request):
+    """Call this view when right click a cell to flag it
+    """
     if 'service' not in request.session:
         return ERROR
     service = request.session["service"]

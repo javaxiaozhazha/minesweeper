@@ -58,8 +58,7 @@ class GameService:
         return neighborCells
 
     def update_board_with_reveal(self, x, y):
-        """
-        This method is called when left click a cell
+        """This method is called when left click a cell
         """
         cell = self._game._board[x][y]
         if not cell._isRevealed and not cell._isFlagged:
@@ -71,8 +70,7 @@ class GameService:
             self._update_game_status()
 
     def update_board_with_flag(self, x, y):
-        """
-        This method is called when right click a cell
+        """This method is called when right click a cell
         """
         if self._game._board[x][y]._isFlagged:
             self._game._board[x][y]._isFlagged = False
@@ -91,8 +89,7 @@ class GameService:
                         self._update_neighbor_cells(r, c)
 
     def _update_game_status(self):
-        """
-        Update game state
+        """Update game state
         """
         emptyCells = 0
         for rows in self._game._board:
@@ -103,8 +100,7 @@ class GameService:
             self._game._result = 1
 
 class Jsonify:
-    """
-    Transform data to json according to requirements from Views
+    """Transform data to json according to requirements from Views
     """
     @classmethod
     def to_board_view(cls, board, result):

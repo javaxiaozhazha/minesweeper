@@ -64,7 +64,6 @@ gameServices.factory('gameApiService', ['$http',
   function($http){
     var urlBase="/api";
     var gameApiService = {};
-
     gameApiService.init = function(){
       return $http.get(urlBase + '/init');
     }
