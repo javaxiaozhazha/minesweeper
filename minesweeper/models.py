@@ -25,15 +25,16 @@ class Game:
         self._result = 0 #Game result [0:game ongoing, 1:player win, -1: player lose]
         self._start_time = ""
         self._end_time = ""
+        self._players = []
+        self._current_player = None
 
-    def set_player(self, player):
-        self._player = player
+    def add_player(self, player):
+        self._players.append(player)
 
 class Player:
     """
     Player: every player has their game history, current game status
     """
-    def __init__(self, name, game):
+    def __init__(self, name):
         self._name = name
         self._history = [] #If game finished, add game to history
-        self._game = game #Current game which the player is working on

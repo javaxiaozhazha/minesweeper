@@ -38,14 +38,18 @@ class ViewTests(unittest.TestCase):
 
     def test_model_game(self):
         game = Game(10, 10, 5)
-        player = Player("player1", game)
-        game.set_player(player)
+        player = Player("player1")
+        game.add_player(player)
         self.assertEqual(game._mines, [])
         self.assertEqual(game._result, 0)
-        self.assertEqual(game._player._name, "player1")
+        self.assertEqual(len(game._players), 1)
 
     def test_game_services(self):
-        gameService = GameService("player1", 10, 10, 5)
+        gameService = GameService(10, 10, 5)
+        player1 = Player("player1")
+        player2 = Player("player2")
+        gameService.add_player([player1, player2])
+        gameService.add_player_to_game([player2])
         self.assertEqual(gameService._game._rows, 10)
         gameService.set_board()
         self.assertEqual(len(gameService._game._mines), 5)
@@ -57,19 +61,13 @@ class ViewTests(unittest.TestCase):
 
     def test_multiple_players(self):
         import copy
-        service1 = GameService("Player1", 10, 10, 5)
-        service1.set_board()
-        service2 = GameService("Player2", 10, 10, 5)
-        service2.set_game(copy.deepcopy(service1._game))
+        player1 = Player("player1")
+        player2 = Player("player2")
+        service = GameService(10, 10, 5)
+        service.add_player([player1, player2])
+        service.add_player_to_game([player2])
+        service.set_board()
 
         #All players should share the same initial game board
-        self.assertEqual(service1._game._mines, service2._game._mines)
-        self.assertEqual(service1._game._board[1][1]._isFlagged, service2._game._board[1][1]._isFlagged)
-        self.assertEqual(service1._game._board[1][2]._isFlagged, service2._game._board[1][2]._isFlagged)
-
-        #All players should update their board without affecting others
-        service1.update_board_with_flag(1, 1)
-        self.assertEqual(service1._game._board[1][1]._isFlagged, not service2._game._board[1][1]._isFlagged)
-        service2.update_board_with_flag(1, 2)
-        self.assertEqual(service1._game._board[1][2]._isFlagged, not service2._game._board[1][2]._isFlagged)
+        self.assertEqual(service._game._current_player, player2)
 
