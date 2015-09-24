@@ -7,7 +7,6 @@ class GameService:
     GameService:
       Initialize game, Update game board and game status
     """
-
     def __init__(self, row, col, mines, players):
         self._game = Game(row, col, mines)
         self._players = []
@@ -30,13 +29,13 @@ class GameService:
 
     def create_mines(self): #Create mines randomly
         while len(self._game._mines) < self._game._minesNumber:
-            row = randint(0, self._game._rows - 1)
-            col = randint(0, self._game._cols - 1)
+            row = randint(0, self._game._rows-1)
+            col = randint(0, self._game._cols-1)
             if (row,col) not in self._game._mines:
                 self._game._board[row][col]._isMine = True
-                self._game._mines.append((row,col))
+                self._game._mines.append((row, col))
 
-    def init_cell(self):
+    def init_cell(self): #Set data, state for each cell
         for row in range(self._game._rows):
             for col in range(self._game._cols):
                 number = 0
