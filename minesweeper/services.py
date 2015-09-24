@@ -10,13 +10,15 @@ class GameService:
     def __init__(self, row, col, mines, players):
         self._game = Game(row, col, mines)
         self._players = []
-        for player in players:
-            self._players.append(player)
+        if players:
+            for player in players:
+                self._players.append(player)
 
-    def add_player_to_game(self, players):
-        for player in players:
-            self._game._players.append(player)
-        self._game._current_player = players[0]
+    def add_player_to_game(self, players): #Enable multiple players
+        if players:
+            for player in players:
+                self._game._players.append(player)
+            self._game._current_player = players[0]
 
     def set_board(self):
         for row in range(self._game._rows):
