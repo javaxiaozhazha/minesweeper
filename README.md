@@ -3,10 +3,15 @@ minesweeper README
 Run the game(python2.7, pyramid1.5.7)
 ------------
 >- cd into the project folder
+
 >- mkvirtualenv develop
+
 >- pip install -r requirements.txt
+
 >- [Warning] You may need to deactivate current virtualenv and load it again to make all dependencies work
+
 >- pserve development.ini
+
 >- visit http://0.0.0.0:6543 to play the game
 
 Stop here if you just want to play this game, following steps are to set up development environment
@@ -23,14 +28,14 @@ Set Up Pyramid project
 
 >- Run following commands for test and development
 ```
-python setup.py test -q to test
+python setup.py test
 python setup.py develop
 ```
 >- pserve development.ini --reload
 
 
 Add Bootstrap and AngularJS support
------------------------------
+-----------------------------------
 >- Add bootstrap support
 ```
      <app>/static/css
