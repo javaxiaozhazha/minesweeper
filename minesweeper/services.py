@@ -7,18 +7,8 @@ class GameService:
     GameService:
       Initialize game, Update game board and game status
     """
-    def __init__(self, row, col, mines, players):
+    def __init__(self, row, col, mines):
         self._game = Game(row, col, mines)
-        self._players = []
-        if players:
-            for player in players:
-                self._players.append(player)
-
-    def add_player_to_game(self, players): #Enable multiple players
-        if players:
-            for player in players:
-                self._game._players.append(player)
-            self._game._current_player = players[0]
 
     def set_board(self):
         for row in range(self._game._rows):
@@ -69,6 +59,7 @@ class GameService:
                 self.update_neighbor_cells(x, y)
             cell._isRevealed = True
             self.update_game_status()
+        self.turn_player()
 
     def update_board_with_flag(self, x, y):
         """
@@ -79,6 +70,7 @@ class GameService:
         else:
             self._game._board[x][y]._isFlagged = True
         self.update_game_status()
+        self.turn_player()
 
     def update_neighbor_cells(self, row, col): #Call this method when a cell is revealed
         cell = self._game._board[row][col]
@@ -101,6 +93,12 @@ class GameService:
                     emptyCells += 1
         if emptyCells == self._game._minesNumber:
             self._game._result = 1
+
+    def turn_player(self):
+        if self._game._current_player == 0:
+            self._game._current_player = 1
+        elif self._game._current_player == 1:
+            self._game._current_player = 0
 
 class Jsonify:
     """

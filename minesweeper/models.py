@@ -25,8 +25,10 @@ class Game:
         self._result = 0 #Game result [0:game ongoing, 1:player win, -1: player lose]
         self._start_time = ""
         self._end_time = ""
-        self._players = []
-        self._current_player = None
+        player1 = Player("player1")
+        player2 = Player("player2")
+        self._players = [player1, player2]
+        self._current_player = 0
 
     def add_player(self, player):
         self._players.append(player)
