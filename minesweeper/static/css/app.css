@@ -1,0 +1,73 @@
+body{
+　text-align: center;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  font-size: 16px;
+  font-family: 'Comic Sans MS', Helvetica, sans-serif;
+}
+
+＃board table{
+  text-align: center;
+  display: inline-block;
+}
+
+#board td {
+  height: 30px;
+  width: 30px;
+  text-align: center;
+  font-size: 10px;
+  border: 2px solid #cccccc;
+}
+
+.col-md-12 {
+   text-align:center;
+   display:inline-block;
+}
+
+.col-md-12 table {
+   display:inline-block;
+}
+
+.grey {
+   background-color: grey;
+}
+
+.red {
+   background-color: red;
+}
+
+.green {
+  background-color: green;
+}
+
+.orange {
+  background-color: orange;
+}
+
+.shadow{
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background-color: rgba(0,0,0,0.5);
+  z-index: 10;
+  text-align: center;
+}
+
+.result {
+  width: 300px;
+  height: 200px;
+  line-height: 200px;
+  position: fixed;
+  top: 40%;
+  left: 50%;
+  margin-top: -100px;
+  margin-left: -150px;
+  color: red;
+  background-color: rgba(0,0,0,0.5);
+  border-radius: 5px;
+  text-align: center;
+  z-index: 11; /* 1px higher than the overlay layer */
+  font-size: 20px;
+}
