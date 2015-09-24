@@ -61,9 +61,13 @@ class ViewTests(unittest.TestCase):
         service1.set_board()
         service2 = GameService("Player2", 10, 10, 5)
         service2.set_game(copy.deepcopy(service1._game))
+
+        #All players should share the same initial game board
         self.assertEqual(service1._game._mines, service2._game._mines)
         self.assertEqual(service1._game._board[1][1]._isFlagged, service2._game._board[1][1]._isFlagged)
         self.assertEqual(service1._game._board[1][2]._isFlagged, service2._game._board[1][2]._isFlagged)
+
+        #All players should update their board without affecting others
         service1.update_board_with_flag(1, 1)
         self.assertEqual(service1._game._board[1][1]._isFlagged, not service2._game._board[1][1]._isFlagged)
         service2.update_board_with_flag(1, 2)
