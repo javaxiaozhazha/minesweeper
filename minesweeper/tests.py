@@ -45,7 +45,7 @@ class ViewTests(unittest.TestCase):
         self.assertEqual(game._player._name, "player1")
 
     def test_game_services(self):
-        gameService = GameService("player1")
+        gameService = GameService("player1", 10, 10, 5)
         self.assertEqual(gameService._game._rows, 10)
         gameService.set_board()
         self.assertEqual(len(gameService._game._mines), 5)
@@ -54,4 +54,18 @@ class ViewTests(unittest.TestCase):
         gameService.update_board_with_flag(1, 1)
         self.assertEqual(gameService._game._board[1][1]._isFlagged, True)
         self.assertEqual(gameService._game._result, 0)
+
+    def test_multiple_players(self):
+        import copy
+        service1 = GameService("Player1", 10, 10, 5)
+        service1.set_board()
+        service2 = GameService("Player2", 10, 10, 5)
+        service2.set_game(copy.deepcopy(service1._game))
+        self.assertEqual(service1._game._mines, service2._game._mines)
+        self.assertEqual(service1._game._board[1][1]._isFlagged, service2._game._board[1][1]._isFlagged)
+        self.assertEqual(service1._game._board[1][2]._isFlagged, service2._game._board[1][2]._isFlagged)
+        service1.update_board_with_flag(1, 1)
+        self.assertEqual(service1._game._board[1][1]._isFlagged, not service2._game._board[1][1]._isFlagged)
+        service2.update_board_with_flag(1, 2)
+        self.assertEqual(service1._game._board[1][2]._isFlagged, not service2._game._board[1][2]._isFlagged)
 
