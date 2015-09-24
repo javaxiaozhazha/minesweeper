@@ -1,17 +1,18 @@
 minesweeper README
 
-Run the game(python2.7 Pyramid1.5.7)
+Run the game(python2.7, pyramid1.5.7)
 ------------
 >- cd into the project folder
 >- mkvirtualenv develop
 >- pip install -r requirements.txt
 >- [Warning] You may need to deactivate current virtualenv and load it again to make all dependencies work
 >- pserve development.ini
+>- visit http://0.0.0.0:6543 to play the game
 
 Stop here if you just want to play this game, following steps are to set up development environment
 ----------------------------------------------------------------------------------------------------
 
-Set up Pyramid project
+Set Up Pyramid project
 ----------------------
 
 >- mkvirtualenv minesweeper
@@ -28,7 +29,7 @@ python setup.py develop
 >- pserve development.ini --reload
 
 
-Add Bootstrap Angular support
+Add Bootstrap and AngularJS support
 -----------------------------
 >- Add bootstrap support
 ```
@@ -44,7 +45,7 @@ Add Bootstrap Angular support
 Deploy to heroku
 ----------------
 >**Pre-deploy**
->- pip  freeze > requirements.txt, delete the line include the github url
+>- pip  freeze > requirements.txt, delete the line which include the github url
 
 >- Add Procfile:  echo "web: ./run" > Procfile
 
