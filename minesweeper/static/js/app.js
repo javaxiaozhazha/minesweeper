@@ -1,11 +1,11 @@
 'use strict'
-
 /* App Module*/
 var app = angular.module('minesweeper', [
   'gameControllers',
   'gameServices',
 ]);
 
+/* Add right click directive*/
 app.directive('ngRightClick', function($parse) {
     return function(scope, element, attrs) {
         var fn = $parse(attrs.ngRightClick);
@@ -20,7 +20,6 @@ app.directive('ngRightClick', function($parse) {
 
 /*Controllers*/
 var gameControllers = angular.module('gameControllers', []);
-
 gameControllers.controller('minesweep', ['$scope', '$http', 'gameApiService',
   function($scope, $http, gameApiService){
     $scope.finish = 0;
@@ -84,5 +83,3 @@ gameServices.factory('gameApiService', ['$http',
     return gameApiService;
   }
 ]);
-
-/*Utility functions*/

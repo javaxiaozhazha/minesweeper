@@ -18,7 +18,7 @@
   <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
     <div class="container">
       <div class="navbar-header">
-        <a class="navbar-brand">Minesweep</a>
+        <a class="navbar-brand">Minesweeper</a>
       </div>
     </div>
   </div>
@@ -48,7 +48,7 @@
               </td>
             </tr>
             </table>
-            <p> <button class="btn btn-lg btn-primary" ng-click="new_game()">New Game</button></p>
+            <p> <button class="btn btn-lg btn-primary" ng-click="new_game()">Back to easy level</button></p>
             <p ng-show="finish==-1">Click the shadow to chagllenge again!</p>
             <p ng-show="finish==1">Click the shadow to chagllenge next level!</p>
           </div>

@@ -124,39 +124,3 @@ class Jsonify:
                         rowsView.append(["", False, cell._isFlagged])
             boardView.append(rowsView)
         return json.loads(json.dumps(boardView, default=lambda o: o.__dict__))
-
-    @classmethod
-    def to_mines_view(cls, board):
-        """
-        Show the board with all mines revealed
-        :param board:
-        :return:
-        """
-        boardView = []
-        for rows in board:
-            rowsView = []
-            for cell in rows:
-                if cell._isMine:
-                    rowsView.append("X")
-                else:
-                    rowsView.append("")
-            boardView.append(rowsView)
-        return json.loads(json.dumps(boardView, default=lambda o: o.__dict__))
-
-    @classmethod
-    def to_mines_number_view(cls, board):
-        """
-        Show the board with each cell show the number of mines around it
-        :param board:
-        :return:
-        """
-        boardView = []
-        for rows in board:
-            rowsView = []
-            for cell in rows:
-                if cell._minesAround>0:
-                    rowsView.append(cell._minesAround)
-                else:
-                    rowsView.append("")
-            boardView.append(rowsView)
-        return json.loads(json.dumps(boardView, default=lambda o: o.__dict__))
