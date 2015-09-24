@@ -30,16 +30,18 @@
         <div class="col-md-12">
           <h2>
             <p>
-              <span ng-show="current_player==0">Current Player: 1</span>
-              <span ng-show="current_player==1">Current Player: 2</span> |
+              <span ng-show="current_player==0">Current Player: Grey sweeper</span>
+              <span ng-show="current_player==1">Current Player: Blue sweeper</span> |
               <span ng-show="level==0">Level: Easy</span>
               <span ng-show="level==1">Level: Intermediate</span>
               <span ng-show="level==2">Level: Hard</span>
             </p>
           </h2>
            <div class="shadow" ng-show="finish!=0" ng-click="init()"> </div>　　
-           <div class="result" ng-show="finish==-1" ng-click="init()"><img src="${request.static_url('minesweeper:static/img/sorry.gif')}"/> Player {{current_player+1}} Won!</div>　　
-           <div class="result" ng-show="finish==1" ng-click="init()"> <img src="${request.static_url('minesweeper:static/img/happy.gif')}"/> Player {{current_player+1}} Lose! </div>　
+           <div class="result" ng-show="finish==-1 && current_player==1" ng-click="init()"><img src="${request.static_url('minesweeper:static/img/happy.gif')}"/> Blue sweeper Won!</div>
+           <div class="result" ng-show="finish==-1 && current_player==0" ng-click="init()"><img src="${request.static_url('minesweeper:static/img/happy.gif')}"/> Grey sweeper Won!</div>　
+           <div class="result" ng-show="finish==1 && current_player==1" ng-click="init()"> <img src="${request.static_url('minesweeper:static/img/happy.gif')}"/> Grey sweeper Won! </div>
+           <div class="result" ng-show="finish==1 && current_player==0" ng-click="init()"> <img src="${request.static_url('minesweeper:static/img/happy.gif')}"/> Blue sweeper Won! </div>　
            <div ng-init="init()" id="board">
             <table>
             <tr ng-repeat="rows in board" ng-init="rindex=$index">
