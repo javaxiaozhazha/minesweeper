@@ -1,4 +1,3 @@
-
 class Cell:
     """
     Cell: represent a single cell on the game board

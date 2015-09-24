@@ -1,5 +1,6 @@
 from models import Cell, Game, Player
 from random import randint
+import json
 
 class GameService:
     """
@@ -22,7 +23,7 @@ class GameService:
         self.create_mines()
         self.init_cell()
 
-    def create_mines(self):
+    def create_mines(self): #Create mines randomly
         while len(self._game._mines) < self._game._minesNumber:
             row = randint(0, self._game._rows - 1)
             col = randint(0, self._game._cols - 1)
@@ -73,7 +74,7 @@ class GameService:
             self._game._board[x][y]._isFlagged = True
         self.update_game_status()
 
-    def update_neighbor_cells(self, row, col):
+    def update_neighbor_cells(self, row, col): #Call this method when a cell is revealed
         cell = self._game._board[row][col]
         if not cell._isRevealed:
             cell._isRevealed = True
@@ -94,3 +95,62 @@ class GameService:
                     emptyCells += 1
         if emptyCells == self._game._minesNumber:
             self._game._result = 1
+
+class Jsonify:
+    """
+    Transform data to json according to requirements from Views
+    """
+    @classmethod
+    def to_board_view(cls, board, result):
+        boardView=[]
+        for rows in board:
+            rowsView = []
+            for cell in rows:
+                if result is not 0 and cell._isMine:
+                    rowsView.append(["X", True, cell.isFlagged()])
+                else:
+                    if cell._isRevealed:
+                        if cell._minesAround>0:
+                            rowsView.append([cell._minesAround,True, cell._isFlagged])
+                        else:
+                            rowsView.append(["", True, cell._isFlagged])
+                    else:
+                        rowsView.append(["", False, cell._isFlagged])
+            boardView.append(rowsView)
+        return json.loads(json.dumps(boardView, default=lambda o: o.__dict__))
+
+    @classmethod
+    def to_mines_view(cls, board):
+        """
+        Show the board with all mines revealed
+        :param board:
+        :return:
+        """
+        boardView = []
+        for rows in board:
+            rowsView = []
+            for cell in rows:
+                if cell._isMine:
+                    rowsView.append("X")
+                else:
+                    rowsView.append("")
+            boardView.append(rowsView)
+        return json.loads(json.dumps(boardView, default=lambda o: o.__dict__))
+
+    @classmethod
+    def to_mines_number_view(cls, board):
+        """
+        Show the board with each cell show the number of mines around it
+        :param board:
+        :return:
+        """
+        boardView = []
+        for rows in board:
+            rowsView = []
+            for cell in rows:
+                if cell._minesAround>0:
+                    rowsView.append(cell._minesAround)
+                else:
+                    rowsView.append("")
+            boardView.append(rowsView)
+        return json.loads(json.dumps(boardView, default=lambda o: o.__dict__))
