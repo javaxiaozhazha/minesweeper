@@ -27,8 +27,17 @@ gameControllers.controller('minesweep', ['$scope', '$http', 'gameApiService',
     $scope.flag = false;
     $scope.init = function(){
       gameApiService.init().success(function(data){
-        $scope.board = data;
+        $scope.board = data[0];
         $scope.finish = 0;
+        $scope.level = data[1]
+      });
+    };
+
+    $scope.new_game = function(){
+      gameApiService.new_game().success(function(data){
+        $scope.board = data[0];
+        $scope.finish = 0;
+        $scope.level = data[1]
       });
     };
 
@@ -36,6 +45,7 @@ gameControllers.controller('minesweep', ['$scope', '$http', 'gameApiService',
       gameApiService.update(row, col).success(function(data){
         $scope.board = data[0];
         $scope.finish = data[1];
+        $scope.level = data[2]
       });
     };
 
@@ -43,12 +53,13 @@ gameControllers.controller('minesweep', ['$scope', '$http', 'gameApiService',
       gameApiService.flag(row, col).success(function(data){
         $scope.board = data[0];
         $scope.finish = data[1];
+        $scope.level = data[2]
       });
     };
   }
 ]);
 
-/*Services*/
+/*Call API Services*/
 var gameServices = angular.module('gameServices', []);
 gameServices.factory('gameApiService', ['$http',
   function($http){
@@ -63,6 +74,13 @@ gameServices.factory('gameApiService', ['$http',
       return $http.post(urlBase + '/update', {'row':row, 'col':col});
     }
 
+    gameApiService.flag = function(row, col){
+      return $http.post(urlBase + '/flag', {'row':row, 'col':col});
+    }
+
+    gameApiService.new_game = function(row, col){
+      return $http.post(urlBase + '/new');
+    }
     return gameApiService;
   }
 ]);

@@ -30,7 +30,9 @@
         <div class="col-md-12">
           <h2>
             <p>
-              <button class="btn btn-lg btn-primary" ng-click="init()">New Game</button>
+              <span ng-show="level==0">Level: Easy</span>
+              <span ng-show="level==1">Level: Intermediate</span>
+              <span ng-show="level==2">Level: Hard</span>
             </p>
           </h2>
            <div class="shadow" ng-show="finish!=0" ng-click="init()"> </div>　　
@@ -46,7 +48,9 @@
               </td>
             </tr>
             </table>
-            <p ng-show="finish!=0">Click the shadow to start a new game!</p>
+            <p> <button class="btn btn-lg btn-primary" ng-click="new_game()">New Game</button></p>
+            <p ng-show="finish==-1">Click the shadow to chagllenge again!</p>
+            <p ng-show="finish==1">Click the shadow to chagllenge next level!</p>
           </div>
         </div>
       </div>

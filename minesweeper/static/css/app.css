@@ -12,8 +12,8 @@ body{
 }
 
 #board td {
-  height: 30px;
-  width: 30px;
+  height: 20px;
+  width: 20px;
   text-align: center;
   font-size: 10px;
   border: 2px solid #cccccc;
@@ -60,7 +60,7 @@ body{
   height: 200px;
   line-height: 200px;
   position: fixed;
-  top: 40%;
+  top: 30%;
   left: 50%;
   margin-top: -100px;
   margin-left: -150px;
