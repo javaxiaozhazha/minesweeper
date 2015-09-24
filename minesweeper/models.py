@@ -17,7 +17,7 @@ class Game:
 
     Game holds a board of 2D cells, and all states (game done or game ongoing...)
     """
-    def __init__(self, rows, cols, minesNumber, player):
+    def __init__(self, rows, cols, minesNumber):
         self._rows = rows
         self._cols =cols
         self._minesNumber = minesNumber #The number of mines the board holds
@@ -26,6 +26,8 @@ class Game:
         self._result = 0 #Game result [0:game ongoing, 1:player win, -1: player lose]
         self._start_time = ""
         self._end_time = ""
+
+    def set_player(self, player):
         self._player = player
 
 class Player:

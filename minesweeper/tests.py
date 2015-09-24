@@ -1,7 +1,7 @@
 import unittest
 
 from pyramid import testing
-from models import Cell, Game
+from models import Cell, Game, Player
 
 class ViewTests(unittest.TestCase):
     def setUp(self):
@@ -35,7 +35,10 @@ class ViewTests(unittest.TestCase):
         self.assertEqual(cell._isFlagged, True)
         self.assertEqual(cell._minesAround, 8)
 
-    def test_model_board(self):
+    def test_model_game(self):
         game = Game(10, 10, 5)
+        player = Player("player1", game)
+        game.set_player(player)
         self.assertEqual(game._mines, [])
         self.assertEqual(game._result, 0)
+        self.assertEqual(game._player._name, "player1")
