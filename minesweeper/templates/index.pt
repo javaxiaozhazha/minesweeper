@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html ng-app="minesweeper">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta http-equiv="X-UA-COMPATIBLE" content="IE=edge" />
+  <meta name="description" content="Game">
+  <meta name="author" content="Yu Qian">
+  <title>Welcome to play Minesweeper Game</title>
+  <link rel="stylesheet" href="${request.static_url('minesweeper:static/css/bootstrap.min.css')}">
+  <link rel="stylesheet" href="${request.static_url('minesweeper:static/css/bootstrap-theme.min.css')}">
+  <link rel="stylesheet" href="${request.static_url('minesweeper:static/css/app.css')}">
+</head>
+
+<body ng-controller="minesweep">
+<div class="container">
+
+  <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+    <div class="container">
+      <div class="navbar-header">
+        <a class="navbar-brand">Minesweep</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- The container is for game-->
+  <div class="container">
+    <div class="jumbotron">
+      <div class="row">
+        <div class="col-md-12">
+          <h2>
+            <p>
+              <button class="btn btn-lg btn-primary" ng-click="init()">New Game</button>
+            </p>
+          </h2>
+           <div class="shadow" ng-show="finish!=0" ng-click="init()"> </div>　　
+           <div class="result" ng-show="finish==-1" ng-click="init()"> YOU Lose!</div>　　
+           <div class="result" ng-show="finish==1" ng-click="init()"> YOU Won! </div>　
+           <div ng-init="init()" id="board">
+            <table>
+            <tr ng-repeat="rows in board" ng-init="rindex=$index">
+              <td ng-disabled="cell[1]"
+                  ng-click="update(rindex, $index);" ng-right-click="flag(rindex, $index);"
+                  ng-repeat="cell in rows"
+                  ng-class="{red:cell[0]=='X', green:!cell[1], grey:cell[1], orange:cell[2]}">{{cell[0]}}
+              </td>
+            </tr>
+            </table>
+            <p ng-show="finish!=0">Click the shadow to start a new game!</p>
+          </div>
+        </div>
+      </div>
+    </div>
+　</div>
+
+  <footer>
+    <p>©Yu Qian 2015</p>
+  </footer>
+
+</div>
+<script src="${request.static_url('minesweeper:static/js/angular.min.js')}"></script>
+<script src="${request.static_url('minesweeper:static/js/app.js')}"></script>
+</body>
+</html>
