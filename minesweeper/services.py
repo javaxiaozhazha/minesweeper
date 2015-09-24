@@ -8,11 +8,9 @@ class GameService:
       Initialize game, Update game board and game status
     """
 
-    def __init__(self, row, col, mines):
-        self._players = []
+    def __init__(self, row, col, mines, players):
         self._game = Game(row, col, mines)
-
-    def add_player(self, players):
+        self._players = []
         for player in players:
             self._players.append(player)
 

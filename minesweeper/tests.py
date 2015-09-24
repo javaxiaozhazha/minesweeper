@@ -45,10 +45,9 @@ class ViewTests(unittest.TestCase):
         self.assertEqual(len(game._players), 1)
 
     def test_game_services(self):
-        gameService = GameService(10, 10, 5)
         player1 = Player("player1")
         player2 = Player("player2")
-        gameService.add_player([player1, player2])
+        gameService = GameService(10, 10, 5, [player1, player2])
         gameService.add_player_to_game([player2])
         self.assertEqual(gameService._game._rows, 10)
         gameService.set_board()
@@ -63,11 +62,9 @@ class ViewTests(unittest.TestCase):
         import copy
         player1 = Player("player1")
         player2 = Player("player2")
-        service = GameService(10, 10, 5)
-        service.add_player([player1, player2])
+        service = GameService(10, 10, 5, [player1, player2])
         service.add_player_to_game([player2])
         service.set_board()
-
         #All players should share the same initial game board
         self.assertEqual(service._game._current_player, player2)
 
