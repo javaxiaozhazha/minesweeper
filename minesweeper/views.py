@@ -9,7 +9,10 @@ def my_view(request):
     return {'project': 'minesweeper'}
 
 @view_config(route_name='api.init', renderer='json')
-def start_game_view(request):
+def load_game_view(request):
+    """If unfinished game was found in memory, then load it
+     OR create a new game
+    """
     service = None
     level = 0
     if 'level' not in request.session:
@@ -20,19 +23,26 @@ def start_game_view(request):
     if 'service' not in request.session or request.session['service']._game._result is not 0:
         print 'Init game...'
         player = Player("player1")
-        if level==0:
-            service = GameService(10, 10, 5, [player])
-        elif level==1:
-            service = GameService(16, 16, 40, [player])
-        elif level==2:
-            service = GameService(20, 20, 80, [player])
-        service.add_player_to_game([player])
-        service.set_board()
+        service = create_game(level, [player])
         request.session['service'] = service
     else:
+        print "load existing game..."
         service = request.session["service"]
     print "mines:", service._game._mines
-    return Jsonify.to_board_view(service._game._board, service._game._result);
+    return [Jsonify.to_board_view(service._game._board, service._game._result), request.session['level']];
+
+@view_config(route_name='api.new', renderer='json')
+def new_game_view(request):
+    """Create a new game from level 0
+    """
+    print 'Start a new game from level 0...'
+    level = 0
+    player = Player("player1")
+    service = create_game(level, [player])
+    request.session['service'] = service
+    request.session['level'] = level
+    print "mines:", service._game._mines
+    return [Jsonify.to_board_view(service._game._board, service._game._result), request.session['level']];
 
 @view_config(route_name='api.update', renderer='json')
 def update_view(request):
@@ -45,4 +55,28 @@ def update_view(request):
     service.update_board_with_reveal(row, col)
     if service._game._result==1:
         request.session['level'] += 1
-    return [Jsonify.to_board_view(service._game._board, service._game._result), service._game._result];
+    return [Jsonify.to_board_view(service._game._board, service._game._result), service._game._result, request.session['level']];
+
+@view_config(route_name='api.flag', renderer='json')
+def flag_view(request):
+    if 'service' not in request.session:
+        return ERROR
+    service = request.session["service"]
+    row = int(request.json_body['row'])
+    col = int(request.json_body['col'])
+    service.update_board_with_flag(row, col)
+    return [Jsonify.toJson(service._game._board, service._game._result), service._game._result, request.session['level']];
+
+def create_game(level, players):
+    """Create game according to game level and players
+    """
+    service = None
+    if level==0:
+        service = GameService(10, 10, 5, players)
+    elif level==1:
+        service =  GameService(16, 16, 40, players)
+    elif level==2:
+        service = GameService(20, 20, 80, players)
+    service.add_player_to_game([players[0]])
+    service.set_board()
+    return service
