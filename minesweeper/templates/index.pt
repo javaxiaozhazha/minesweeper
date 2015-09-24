@@ -34,8 +34,8 @@
             </p>
           </h2>
            <div class="shadow" ng-show="finish!=0" ng-click="init()"> </div>　　
-           <div class="result" ng-show="finish==-1" ng-click="init()"> YOU Lose!</div>　　
-           <div class="result" ng-show="finish==1" ng-click="init()"> YOU Won! </div>　
+           <div class="result" ng-show="finish==-1" ng-click="init()"><img src="${request.static_url('minesweeper:static/img/sorry.gif')}"/> YOU Lose!</div>　　
+           <div class="result" ng-show="finish==1" ng-click="init()"> <img src="${request.static_url('minesweeper:static/img/happy.gif')}"/>YOU Won! </div>　
            <div ng-init="init()" id="board">
             <table>
             <tr ng-repeat="rows in board" ng-init="rindex=$index">
