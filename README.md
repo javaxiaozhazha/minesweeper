@@ -8,7 +8,7 @@ Run the game(python2.7 Pyramid1.5.7)
 >- [Warning] You may need to deactivate current virtualenv and load it again to make all dependencies work
 >- pserve development.ini
 
-Stop here if you just want to play this game, following are steps to set up developmenet environment
+Stop here if you just want to play this game, following steps are to set up development environment
 ----------------------------------------------------------------------------------------------------
 
 Set up Pyramid project
