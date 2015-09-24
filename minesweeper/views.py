@@ -23,6 +23,7 @@ def load_game_view(request):
     if 'service' not in request.session or request.session['service']._game._result is not 0:
         print 'Init game...'
         player = Player("player1")
+        player2 = Player("player2")
         service = create_game(level, [player])
         request.session['service'] = service
     else:
