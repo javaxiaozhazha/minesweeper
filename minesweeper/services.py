@@ -113,7 +113,7 @@ class Jsonify:
             rowsView = []
             for cell in rows:
                 if result is not 0 and cell._isMine:
-                    rowsView.append(["X", True, cell.isFlagged()])
+                    rowsView.append(["X", True, cell._isFlagged])
                 else:
                     if cell._isRevealed:
                         if cell._minesAround>0:
