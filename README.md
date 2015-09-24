@@ -4,10 +4,9 @@ Run the game(python2.7 Pyramid1.5.7)
 ------------
 >- cd into the project folder
 >- mkvirtualenv develop
->- pip install pyramid
->- python setup.py develop
->- pserve development.ini --reload
->- [Warning] make sure all dependencies installed
+>- pip install -r requirements.txt
+>- [Warning] You may need to deactivate current virtualenv and load it again to make all dependencies work
+>- pserve development.ini
 
 
 Set up Pyramid project
