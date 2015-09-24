@@ -1,22 +1,23 @@
 
 class Cell:
     """
-    Cell class to represent a cell in the game board
+    Cell: represent a single cell on the game board
 
     It stores all data(markers, states) of a cell
     """
     def __init__(self):
-        self._isMine = False #the cell is a mine or not
-        self._isRevealed = False #the cell is revealed by player or not
-        self._isFlagged = False #the cell is flagged by player or not
-        self._minesAround = 0 #the mines around current cell [0, 8] (upper left, upper, upper right, left, right, down left, down, down right)
+        self._isMine = False #Cell is a mine or not
+        self._isRevealed = False #Cell is revealed by player or not
+        self._isFlagged = False #Cell is flagged by player or not
+        self._minesAround = 0 #The number of mines around a cell, range is [0, 8]
 
 class Game:
     """
-    Game class represent a game board
+    Game: represent a single game
+
     Game holds a board of 2D cells, and all states (game done or game ongoing...)
     """
-    def __init__(self, rows, cols, minesNumber):
+    def __init__(self, rows, cols, minesNumber, player):
         self._rows = rows
         self._cols =cols
         self._minesNumber = minesNumber #The number of mines the board holds
@@ -25,11 +26,13 @@ class Game:
         self._result = 0 #Game result [0:game ongoing, 1:player win, -1: player lose]
         self._start_time = ""
         self._end_time = ""
+        self._player = player
 
 class Player:
     """
     Player: every player has their game history, current game status
     """
-    def __init__(self, name):
-        self._history = []
+    def __init__(self, name, game):
         self._name = name
+        self._history = [] #If game finished, add game to history
+        self._game = game #Current game which the player is working on
