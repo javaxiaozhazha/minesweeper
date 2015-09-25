@@ -24,6 +24,15 @@ gameControllers.controller('minesweep', ['$scope', '$http', 'gameApiService',
   function($scope, $http, gameApiService){
     $scope.finish = 0;
     $scope.flag = false;
+    $scope.check_login = function(){
+    };
+
+    $scope.force_game = function(){
+      gameApiService.to_game().success(function(data){
+        console.log("kick out curent players")
+      });
+    };
+
     $scope.init = function(){
       gameApiService.init().success(function(data){
         $scope.board = data[0];
@@ -64,6 +73,10 @@ gameServices.factory('gameApiService', ['$http',
   function($http){
     var urlBase="/api";
     var gameApiService = {};
+    gameApiService.to_game = function(){
+      return $http.get('/index');
+    }
+
     gameApiService.init = function(){
       return $http.get(urlBase + '/init');
     }

@@ -24,7 +24,8 @@
   <!-- The container is for game-->
   <div class="container">
     <div class="jumbotron">
-        <p>Game is ongoing...</p>
+        <p>Game is ongoing, please come later...</p>
+        <p><button  class="btn btn-lg btn-primary" ng-click="force_game()">Kick out current players, This is evil...</button></p>
     </div>
 　</div>
   <footer>

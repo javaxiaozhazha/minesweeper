@@ -1,20 +1,24 @@
 from pyramid.view import view_config
 from services import GameService, Jsonify
 from models import Player
+from pyramid.httpexceptions import HTTPFound, HTTPNotFound
+from pyramid.url import route_url
 
 ERROR = {"404":"Resources not found"}
-INVALID ={"INVALID":"Other players are in, please wait..."}
 
-@view_config(route_name='home', renderer='templates/login.pt')
-def login_view(request):
-    if 'service' in request.session and request.session['serice']._game._result is 0:
-        return INVALID
+@view_config(route_name='home')
+def home_view(request):
+    if 'service' in request.session and request.session['service']._game._result is 0:
+        print "can not play now"
+        return HTTPFound(route_url('login', request))
     else:
-        subreq = request.blank('/api/main')
-        response = request.invoke_subrequest(subreq)
-        return response
+        return HTTPFound(route_url('index', request))
 
-@view_config(route_name='api.main', renderer='templates/index.pt')
+@view_config(route_name='login', renderer='templates/login.pt')
+def login_view(request):
+    return {'status':"Current game not finished!"}
+
+@view_config(route_name='index', renderer='templates/index.pt')
 def my_view(request):
     return {'project': 'minesweeper'}
 
