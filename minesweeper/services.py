@@ -72,10 +72,11 @@ class GameService:
     def update_board_with_flag(self, x, y):
         """This method is called when right click a cell
         """
-        if self._game._board[x][y]._isFlagged:
-            self._game._board[x][y]._isFlagged = False
-        else:
-            self._game._board[x][y]._isFlagged = True
+        if not self._game._board[x][y]._isRevealed:
+            if self._game._board[x][y]._isFlagged:
+                self._game._board[x][y]._isFlagged = False
+            else:
+                self._game._board[x][y]._isFlagged = True
         self._update_game_status()
 
     def _update_neighbor_cells(self, row, col): #Call this method when a cell is revealed

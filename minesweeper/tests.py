@@ -47,15 +47,16 @@ class ViewTests(unittest.TestCase):
     def test_game_services(self):
         player1 = Player("player1")
         player2 = Player("player2")
-        gameService = GameService(10, 10, 5, [player1, player2])
+        gameService = GameService(10, 10, 50, [player1, player2])
         gameService.add_player_to_game([player2])
         self.assertEqual(gameService._game._rows, 10)
         gameService.set_board()
-        self.assertEqual(len(gameService._game._mines), 5)
+        self.assertEqual(len(gameService._game._mines), 50)
         gameService.update_board_with_reveal(0, 0)
         self.assertEqual(gameService._game._board[0][0]._isRevealed, True)
-        gameService.update_board_with_flag(1, 1)
-        self.assertEqual(gameService._game._board[1][1]._isFlagged, True)
+        gameService.update_board_with_flag(8, 8)
+        self.assertEqual(gameService._game._board[8][8]._isRevealed, False)
+        self.assertEqual(gameService._game._board[8][8]._isFlagged, True)
         self.assertEqual(gameService._game._result, 0)
 
     def test_multiple_players(self):
