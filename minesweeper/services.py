@@ -94,7 +94,7 @@ class GameService:
         emptyCells = 0
         for rows in self._game._board:
             for cell in rows:
-                if cell._isRevealed == False or cell._isFlagged:
+                if not cell._isRevealed or cell._isFlagged:
                     emptyCells += 1
         if emptyCells == self._game._minesNumber:
             self._game._result = 1
