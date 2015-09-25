@@ -14,7 +14,7 @@ Run the game(python2.7, pyramid1.5.7)
 
 >- pserve development.ini
 
->- visit http://0.0.0.0:6543 to play the game
+>- visit http://0.0.0.0:6543 or http://localhost:6543 or http://127.0.0.1:6543 to play the game
 
 Stop here if you just want to play this game, following steps are to set up development environment
 ----------------------------------------------------------------------------------------------------
@@ -84,8 +84,6 @@ if __name__ == "__main__":
 >- heroku scale web=1
 
 >**Start, log**
-
->- heroku open
 
 >- heroku ps
 
