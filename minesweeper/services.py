@@ -33,7 +33,7 @@ class GameService:
         while len(self._game._mines) < self._game._minesNumber:
             row = randint(0, self._game._rows-1)
             col = randint(0, self._game._cols-1)
-            if (row,col) not in self._game._mines:
+            if (row, col) not in self._game._mines:
                 self._game._board[row][col]._isMine = True
                 self._game._mines.append((row, col))
 
@@ -79,7 +79,7 @@ class GameService:
                 self._game._board[x][y]._isFlagged = True
         self._update_game_status()
 
-    def _update_neighbor_cells(self, row, col): #Call this method when a cell is revealed
+    def _update_neighbor_cells(self, row, col): #Call this recursive method when a cell is revealed
         cell = self._game._board[row][col]
         if not cell._isRevealed:
             cell._isRevealed = True
@@ -90,7 +90,7 @@ class GameService:
                         self._update_neighbor_cells(r, c)
 
     def _update_game_status(self):
-        """Update game state
+        """Update game result
         """
         emptyCells = 0
         for rows in self._game._board:
@@ -101,7 +101,7 @@ class GameService:
             self._game._result = 1
 
 class Jsonify:
-    """Transform data to json according to requirements from Views
+    """Transform data to Json according to front end requirements
     """
     @classmethod
     def to_board_view(cls, board, result):

@@ -10,7 +10,7 @@ def main(global_config, **settings):
     config.include("pyramid_beaker")
     config.add_static_view('static', 'static', cache_max_age=0)
     config.add_route('home', '/')
-    #Add my RESTful API route config here
+    #Add my route config here
     config.add_route('api.init', '/api/init')
     config.add_route('api.new', '/api/new')
     config.add_route('api.update', '/api/update')

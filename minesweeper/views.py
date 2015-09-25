@@ -2,7 +2,7 @@ from pyramid.view import view_config
 from services import GameService, Jsonify
 from models import Player
 
-ERROR = {"404":"Resources not found"}
+ERROR = {"404":"Game Service not found"}
 
 @view_config(route_name='home', renderer='templates/index.pt')
 def my_view(request):
@@ -10,7 +10,7 @@ def my_view(request):
 
 @view_config(route_name='api.init', renderer='json')
 def load_game_view(request):
-    """If unfinished game was found in memory, then load it
+    """If unfinished game is found in memory, then load it
      Otherwise create a new game
     """
     level = 0
@@ -18,7 +18,7 @@ def load_game_view(request):
         request.session['level'] = level
     else:
         level = request.session['level']
-
+    #If there was no game service, or  current game finished, then we can start a new  game service
     if 'service' not in request.session or request.session['service']._game._result is not 0:
         print 'Init game...'
         service = create_game(level, [Player("player1")])
@@ -32,9 +32,9 @@ def load_game_view(request):
 
 @view_config(route_name='api.new', renderer='json')
 def new_game_view(request):
-    """Create a new game from level 0
+    """Create a new game from level 0 no matter what
     """
-    print 'Start a new game from level 0...'
+    print 'Start a new game from beginner level...'
     level = 0
     service = create_game(level, [Player("player1")])
     request.session['service'] = service
@@ -54,7 +54,7 @@ def update_view(request):
     col = int(request.json_body['col'])
     print "Update:", row, col
     service.update_board_with_reveal(row, col)
-    if service._game._result==1:
+    if service._game._result==1: #Enter next level if player won
         request.session['level'] += 1
     return [Jsonify.to_board_view(service._game._board, service._game._result),
             service._game._result, request.session['level']];
@@ -72,6 +72,7 @@ def flag_view(request):
     return [Jsonify.to_board_view(service._game._board, service._game._result),
             service._game._result, request.session['level']];
 
+#helper function
 def create_game(level, players):
     """Create game according to game level and players
     """

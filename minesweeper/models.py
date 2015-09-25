@@ -2,7 +2,7 @@ class Cell:
     """
     Cell: represent a single cell on the game board
 
-    It stores all data(markers, states) of a cell
+    It saves all data(markers, states) related to a cell
     """
     def __init__(self):
         self._isMine = False #Cell is a mine or not
@@ -14,7 +14,7 @@ class Game:
     """
     Game: represent a single game
 
-    Game holds a board of 2D cells, and all states (game done or game ongoing...)
+    Game holds a board of cells, and all related states (game done or game ongoing...)
     """
     def __init__(self, rows, cols, minesNumber):
         self._rows = rows
@@ -23,13 +23,8 @@ class Game:
         self._board = [] #The size of this board should be rows*cols
         self._mines = [] #A list of cells which are mines
         self._result = 0 #Game result [0:game ongoing, 1:player win, -1: player lose]
-        self._start_time = ""
-        self._end_time = ""
         self._players = []
         self._current_player = None
-
-    def add_player(self, player):
-        self._players.append(player)
 
 class Player:
     """
