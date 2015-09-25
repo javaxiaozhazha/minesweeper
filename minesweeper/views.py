@@ -3,8 +3,18 @@ from services import GameService, Jsonify
 from models import Player
 
 ERROR = {"404":"Resources not found"}
+INVALID ={"INVALID":"Other players are in, please wait..."}
 
-@view_config(route_name='home', renderer='templates/index.pt')
+@view_config(route_name='home', renderer='templates/login.pt')
+def login_view(request):
+    if 'service' in request.session and request.session['serice']._game._result is 0:
+        return INVALID
+    else:
+        subreq = request.blank('/api/main')
+        response = request.invoke_subrequest(subreq)
+        return response
+
+@view_config(route_name='api.main', renderer='templates/index.pt')
 def my_view(request):
     return {'project': 'minesweeper'}
 
