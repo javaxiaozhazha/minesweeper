@@ -11,18 +11,15 @@
   <link rel="stylesheet" href="${request.static_url('minesweeper:static/css/bootstrap-theme.min.css')}">
   <link rel="stylesheet" href="${request.static_url('minesweeper:static/css/app.css')}">
 </head>
-
 <body ng-controller="minesweep">
 <div class="container">
-
   <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
     <div class="container">
       <div class="navbar-header">
-        <a class="navbar-brand">Minesweeper</a>
+        <a class="navbar-brand">MineSweeper</a>
       </div>
     </div>
   </div>
-
   <!-- The container is for game-->
   <div class="container">
     <div class="jumbotron">
@@ -30,7 +27,7 @@
         <div class="col-md-12">
           <h2>
             <p>
-              <span ng-show="level==0">Level: Easy (5 mines)</span>
+              <span ng-show="level==0">Level: Beginner (5 mines)</span>
               <span ng-show="level==1">Level: Intermediate (40 mines)</span>
               <span ng-show="level==2">Level: Expert (80 mines)</span>
             </p>
@@ -48,7 +45,7 @@
               </td>
             </tr>
             </table>
-            <p> <button class="btn btn-lg btn-primary" ng-click="new_game()">Back to easy level</button></p>
+            <p> <button class="btn btn-lg btn-primary" ng-click="new_game()">Back to beginner level</button></p>
             <p ng-show="finish==-1">Click the shadow to chagllenge again!</p>
             <p ng-show="finish==1">Click the shadow to chagllenge next level!</p>
           </div>
@@ -56,11 +53,9 @@
       </div>
     </div>
 　</div>
-
   <footer>
     <p>©Yu Qian 2015</p>
   </footer>
-
 </div>
 <script src="${request.static_url('minesweeper:static/js/angular.min.js')}"></script>
 <script src="${request.static_url('minesweeper:static/js/app.js')}"></script>
