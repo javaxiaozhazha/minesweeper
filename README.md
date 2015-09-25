@@ -6,7 +6,7 @@ Run the game(python2.7, pyramid1.5.7)
 
 >- mkvirtualenv minesweeper
 
->- python setup.py install)
+>- python setup.py install
 
 >- pserve development.ini
 
