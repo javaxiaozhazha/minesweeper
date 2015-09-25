@@ -39,7 +39,7 @@ class ViewTests(unittest.TestCase):
     def test_model_game(self):
         game = Game(10, 10, 5)
         player = Player("player1")
-        game.add_player(player)
+        game._players.append(player)
         self.assertEqual(game._mines, [])
         self.assertEqual(game._result, 0)
         self.assertEqual(len(game._players), 1)
