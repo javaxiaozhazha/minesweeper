@@ -38,3 +38,9 @@ class Player:
     def __init__(self, name):
         self._name = name
         self._history = [] #If game finished, add game to history
+
+class Room:
+    def __init__(self):
+        self._players = []
+        self._game
+        self._history = []
