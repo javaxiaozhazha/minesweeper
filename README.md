@@ -8,10 +8,6 @@ Run the game(python2.7, pyramid1.5.7)
 
 >- python setup.py install
 
->- workon minesweeper
-
->- [Warning] Reload the virtualenv if some dependencies are not working(sometimes 'waitress' not working)
-
 >- pserve development.ini
 
 >- visit http://0.0.0.0:6543 to play the game
