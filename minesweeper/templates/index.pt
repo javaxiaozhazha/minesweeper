@@ -32,6 +32,7 @@
             <p>
               <span ng-show="level==0">Level: Easy (5 mines)</span>
               <span ng-show="level==1">Level: Intermediate (40 mines)</span>
+              <span ng-show="level==2">Level: Expert (80 mines)</span>
             </p>
           </h2>
            <div class="shadow" ng-show="finish!=0" ng-click="init()"> </div>　　
