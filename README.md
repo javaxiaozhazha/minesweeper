@@ -6,11 +6,7 @@ Run the game(python2.7, pyramid1.5.7)
 
 >- mkvirtualenv minesweeper
 
->- python setup.py install
-
->- workon minesweeper
-
->- [Warning] Reload the virtualenv if some dependencies are not working(sometimes 'waitress' not working)
+>- python setup.py install)
 
 >- pserve development.ini
 
