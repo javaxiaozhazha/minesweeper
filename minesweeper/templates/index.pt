@@ -14,7 +14,6 @@
 
 <body ng-controller="minesweep">
 <div class="container">
-
   <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
     <div class="container">
       <div class="navbar-header">
@@ -22,7 +21,6 @@
       </div>
     </div>
   </div>
-
   <!-- The container is for game-->
   <div class="container">
     <div class="jumbotron">
@@ -32,16 +30,16 @@
             <p>
               <span ng-show="current_player==0">Current Player: Grey sweeper</span>
               <span ng-show="current_player==1">Current Player: Blue sweeper</span> |
-              <span ng-show="level==0">Level: Easy</span>
-              <span ng-show="level==1">Level: Intermediate</span>
-              <span ng-show="level==2">Level: Hard</span>
+              <span ng-show="level==0">Level: Beginner (80 mines)</span>
+              <span ng-show="level==1">Level: Intermediate (88 mines)</span>
+              <span ng-show="level==2">Level: Hard (100 mines)</span>
             </p>
           </h2>
            <div class="shadow" ng-show="finish!=0" ng-click="init()"> </div>　　
-           <div class="result" ng-show="finish==-1 && current_player==1" ng-click="init()"><img src="${request.static_url('minesweeper:static/img/happy.gif')}"/> Blue sweeper Won!</div>
-           <div class="result" ng-show="finish==-1 && current_player==0" ng-click="init()"><img src="${request.static_url('minesweeper:static/img/happy.gif')}"/> Grey sweeper Won!</div>　
-           <div class="result" ng-show="finish==1 && current_player==1" ng-click="init()"> <img src="${request.static_url('minesweeper:static/img/happy.gif')}"/> Grey sweeper Won! </div>
-           <div class="result" ng-show="finish==1 && current_player==0" ng-click="init()"> <img src="${request.static_url('minesweeper:static/img/happy.gif')}"/> Blue sweeper Won! </div>　
+           <div class="result" ng-show="finish==-1 && current_player==1" ng-click="init()"><img src="${request.static_url('minesweeper:static/img/happy.gif')}"/> Blue sweeper Win!</div>
+           <div class="result" ng-show="finish==-1 && current_player==0" ng-click="init()"><img src="${request.static_url('minesweeper:static/img/happy.gif')}"/> Grey sweeper Win!</div>　
+           <div class="result" ng-show="finish==1 && current_player==1" ng-click="init()"> <img src="${request.static_url('minesweeper:static/img/happy.gif')}"/> Grey sweeper Win! </div>
+           <div class="result" ng-show="finish==1 && current_player==0" ng-click="init()"> <img src="${request.static_url('minesweeper:static/img/happy.gif')}"/> Blue sweeper Win! </div>　
            <div ng-init="init()" id="board">
             <table>
             <tr ng-repeat="rows in board" ng-init="rindex=$index">
@@ -60,11 +58,9 @@
       </div>
     </div>
 　</div>
-
   <footer>
     <p>©Yu Qian 2015</p>
   </footer>
-
 </div>
 <script src="${request.static_url('minesweeper:static/js/angular.min.js')}"></script>
 <script src="${request.static_url('minesweeper:static/js/app.js')}"></script>
