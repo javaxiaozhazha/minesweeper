@@ -5,7 +5,7 @@ def main(global_config, **settings):
     """ This function returns a Pyramid WSGI application.
     """
     my_session_factory = session_factory_from_settings(settings)
-    config = Configurator(settings=settings, session_factory=my_session_factory)
+    config = Configurator(settings=settings, session_factory=my_session_factory, introspection=True)
     config.include('pyramid_chameleon')
     config.include("pyramid_beaker")
     config.add_static_view('static', 'static', cache_max_age=0)

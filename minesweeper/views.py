@@ -13,6 +13,8 @@ def load_game_view(request):
     """If unfinished game is found in memory, then load it
      Otherwise create a new game
     """
+    from .pyramid_framework import pyramid_test
+    pyramid_test(request)
     level = 0
     if 'level' not in request.session:
         request.session['level'] = level
