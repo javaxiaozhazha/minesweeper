@@ -7,9 +7,9 @@
   <meta name="description" content="Game">
   <meta name="author" content="Yu Qian">
   <title>Welcome to play Minesweeper Game</title>
-  <link rel="stylesheet" href="${request.static_url('minesweeper:static/css/bootstrap.min.css')}">
-  <link rel="stylesheet" href="${request.static_url('minesweeper:static/css/bootstrap-theme.min.css')}">
-  <link rel="stylesheet" href="${request.static_url('minesweeper:static/css/app.css')}">
+  <link rel="stylesheet" href="${request.static_url('minesweeper:static/css/bootstrap.min.css', _scheme='https')}">
+  <link rel="stylesheet" href="${request.static_url('minesweeper:static/css/bootstrap-theme.min.css', _scheme='https')}">
+  <link rel="stylesheet" href="${request.static_url('minesweeper:static/css/app.css', _scheme='https')}">
 </head>
 <body ng-controller="minesweep">
 <div class="container">
@@ -57,7 +57,7 @@
     <p>©Yu Qian 2015</p>
   </footer>
 </div>
-<script src="${request.static_url('minesweeper:static/js/angular.min.js')}"></script>
-<script src="${request.static_url('minesweeper:static/js/app.js')}"></script>
+<script src="${request.static_url('minesweeper:static/js/angular.min.js', _scheme='https')}"></script>
+<script src="${request.static_url('minesweeper:static/js/app.js', _scheme='https')}"></script>
 </body>
 </html>
